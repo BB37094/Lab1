@@ -1,0 +1,73 @@
+/---Main.java---/
+
+package pl.lublin.wsei.java.cwiczenia;
+/* Bartłomiej Burek */
+/* Numer albumu 37094 */
+
+import pl.lublin.wsei.java.cwiczenia.mylib.Account;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Account acc = new Account();
+        acc.setName("bartłomiej burek");
+        System.out.println(acc.getName());
+        System.out.println(acc.translit("Мірослав Бжечищикович"));
+        System.out.println(acc.translit("Збігнєв Влодарський"));
+        System.out.println(acc.translit("Анджей Дуда"));
+
+    }
+}
+
+
+
+
+/--------------------------------------------------------------------------------------/
+
+/---Account.java---/
+
+package pl.lublin.wsei.java.cwiczenia.mylib;
+
+import org.apache.commons.lang3.StringUtils;
+
+public class Account {
+    private String name;
+    private static String ukrAlphabet = "абвгдеєжзиіїйклмнопрстуфхцчшщьюя";
+    private static String translitRepl[] = {"a","b","v","g","d","e","je","zh","z","y","i","ji", "j",
+            "k","l","m","n","o","p","r","s","t","u","f","h","c",
+            "ch","sh","shh","'","ju","ja"};
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public static String capitalize(String aStr)
+    {
+        String[] tokens = StringUtils.split(aStr);
+        for(int i = 0; i < tokens.length; i++)
+            tokens[i] = StringUtils.capitalize(tokens[i]);
+        return StringUtils.join(tokens,' ');
+    }
+
+    public void setName(String name) {
+        this.name = capitalize(name);
+    }
+
+    public static String translit(String arg) {
+        arg = arg.toLowerCase();
+        char[] tokens = arg.toCharArray();
+        int znak = 0;
+        String argTr = "";
+        for (int i = 0; i < tokens.length; i++)
+        {
+            znak = ukrAlphabet.indexOf(tokens[i]);
+            if (znak >= 0)
+                argTr += translitRepl[znak];
+            else
+                argTr += tokens[i];
+        }
+
+        return capitalize(argTr);
+    }
+}

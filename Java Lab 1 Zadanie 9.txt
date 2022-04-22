@@ -1,0 +1,24 @@
+package pl.lublin.wsei.java.cwiczenia;
+/* Bartłomiej Burek */
+/* Numer albumu 37094 */
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        int liczba1 = 0, liczba2 = 0;
+
+        do
+        {
+            System.out.print("Podaj dwie liczby które mam dodać: ");
+            liczba1 = input.nextInt();
+            liczba2 = input.nextInt();
+
+            if ((liczba1 == 0) || (liczba2 == 0)) break;
+            System.out.printf("Wynik działania %d + %d = %d%n", liczba1, liczba2, liczba1 + liczba2);
+        }while(true);
+    }
+}
